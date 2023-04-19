@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+#Environments
+LA_FP_env
+*LA_FP_env
+
