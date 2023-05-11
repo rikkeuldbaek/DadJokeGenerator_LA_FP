@@ -1,25 +1,25 @@
-### Final Project - Emotion Classification on Reddit posts
+### Final Project - Dad Jokes Generator
 ## Cultural Data Science - Language Analytics 
 # Author: Rikke Uldbæk (202007501)
-# Date: 19th of April 2023
+# Date: 11th of May 2023
 
 #--------------------------------------------------------#
-################# EMOTION CLASSIFICATION #################
+################## DAD JOKES GENERATOR ###################
 #--------------------------------------------------------#
 
 # Install packages
-from transformers import pipeline
 import pandas as pd
 import os
-import tensorflow as tf
-import gpt_2_simple as gpt2
 
 
 
 ########################## DATA ##########################
 file = os.path.join(os.getcwd(), "data", "dad-a-base.csv")
-#data = pd.read_csv(file, index_col=0)
+data = pd.read_csv(file)
 
+################## DATA INSPECTION #######################
 
-
+# mean length of jokes 
+mean_length =data['Joke'].str.len().mean()
+print("Mean length of jokes in the data : ",round(mean_length, 0)) 
 
