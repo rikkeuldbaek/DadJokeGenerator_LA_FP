@@ -30,18 +30,18 @@ sess = gpt2.start_tf_sess()
 gpt2.finetune(sess,
               dataset=file,
               model_name='124M', # smallest GPT-2 model
-              steps=250, # number of steps to train (smaller steps is better for short text)
+              steps=500, # number of steps to train (smaller steps is better for short text)
               restore_from='fresh', # training from base GPT-2
-              run_name='dadjokes_gpt2', # folder name for saving model and checkpoint
-              print_every=25, # print every n steps in training process
+              run_name='dadjokes_gpt2_500steps', # folder name for saving model and checkpoint
+              print_every=50, # print every n steps in training process
               sample_every=10, #prints n examples for every printed step
               )
 
 
 ################### GENERATE NEW DAD JOKES USING GPT-2 ####################
-generated_file = 'out/dad_jokes_gpt2.txt'
+generated_file = 'out/dad_jokes_gpt2_500_steps.txt'
 
-gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2',
+gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_500steps',
                       destination_path=generated_file , #filename of generated text
                       length=75, # max length of generated text
                       temperature=1.4, #the larger value the more original txt is generated. (default = 0.7)
