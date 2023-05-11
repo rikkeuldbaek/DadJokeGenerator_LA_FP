@@ -128,8 +128,18 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# github
+*setup_ru.sh
 
-#Environments
-LA_FP_env
-*LA_FP_env
+#models
+*model
+*checkout
+*samples
+*dadjokes
+*models/
+*checkpoint/
 
+
+# virtual environment
+LA_fp_env
+*LA_fp_env

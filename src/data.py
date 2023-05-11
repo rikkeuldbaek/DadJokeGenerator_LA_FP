@@ -11,14 +11,11 @@
 import pandas as pd
 import os
 
-
-
 ########################## DATA ##########################
 file = os.path.join(os.getcwd(), "data", "dad-a-base.csv")
 data = pd.read_csv(file)
 
 ################## DATA INSPECTION #######################
-
 # mean length of jokes 
 mean_length =data['Joke'].str.len().mean()
 print("Mean length of jokes in the data : ",round(mean_length, 0)) 
