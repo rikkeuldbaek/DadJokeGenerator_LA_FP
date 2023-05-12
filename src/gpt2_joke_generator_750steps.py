@@ -42,7 +42,7 @@ gpt2.finetune(sess,
 generated_file = 'out/dad_jokes_gpt2_750_steps.txt'
 
 gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_750steps',
-                      destination_path=generated_file , #filename of generated text
+                      destination_path=generated_file, #filename of generated text
                       length=75, # max length of generated text
                       temperature=1.4, #the larger value the more original txt is generated. (default = 0.7)
                       nsamples=100, # n text prompts generated
