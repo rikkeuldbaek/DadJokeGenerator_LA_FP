@@ -52,4 +52,3 @@ gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2',
                       include_prefix=False, #remove prefix 
                       sample_delim=''
                       )
-
