@@ -1,4 +1,16 @@
+#data wrangling
+numpy
 pandas
-transformers
+utils
+
+# ML
+scikit_learn
+scikit-learn
+
+# tensorflow
 tensorflow-cpu
+tensorflow-datasets
+
+#gpt2
 gpt_2_simple
+

@@ -4,7 +4,7 @@
 # Date: 11th of May 2023
 
 #--------------------------------------------------------#
-################## DAD JOKES GENERATOR ###################
+############## DAD JOKES GENERATOR - GPT-2 ###############
 #--------------------------------------------------------#
 
 # Install packages
@@ -30,28 +30,26 @@ sess = gpt2.start_tf_sess()
 gpt2.finetune(sess,
               dataset=file,
               model_name='124M', # smallest GPT-2 model
-              steps=750, # number of steps to train (smaller steps is better for short text)
+              steps=150, # number of steps to train (smaller steps is better for short text)
               restore_from='fresh', # training from base GPT-2
-              run_name='dadjokes_gpt2_750steps', # folder name for saving model and checkpoint
+              run_name='dadjokes_gpt2_prefix', # folder name for saving model and checkpoint
               print_every=50, # print every n steps in training process
               sample_every=10, #prints n examples for every printed step
               )
 
 
-################### GENERATE NEW DAD JOKES USING GPT-2 ####################
-generated_file = 'out/dad_jokes_gpt2_750_steps.txt'
+################### GENERATE NEW DAD JOKES USING GPT-2 - PREFIX ####################
+generated_file = 'out/dad_jokes_gpt2_prefix.txt'
+input_prompt = "Why did the chicken cross the road?"
 
-gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_750steps',
-                      destination_path=generated_file, #filename of generated text
+gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_prefix',
+                      destination_path=generated_file , #filename of generated text
                       length=75, # max length of generated text
-                      temperature=1.4, #the larger value the more original txt is generated. (default = 0.7)
-                      nsamples=100, # n text prompts generated
+                      temperature= 1, #the larger value the more original txt is generated. (default = 0.7)
+                      nsamples=15, # n text prompts generated
                       batch_size=25, 
-                      prefix="<|startoftext|>", # indicator of starting text for GPT-2
-                      truncate="<|endoftext|>", # indicator of ending text for GPT-2
-                      include_prefix=False, #remove prefix 
+                      prefix=input_prompt, # indicator of starting text for GPT-2
+                      #truncate="<|endoftext|>", # indicator of ending text for GPT-2
+                      #include_prefix=False, #remove prefix 
                       sample_delim=''
                       )
-
-
-
