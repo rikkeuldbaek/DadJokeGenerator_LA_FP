@@ -48,13 +48,13 @@ def input_parse():
     parser.add_argument("--file", type=str, default= "dad-a-base.csv", help= "Specify filename of .csv.") 
 
     #add arguments for training the model
-    parser.add_argument("--n_epochs", type=int, default= 5, help= "Specify number of epochs. More epochs increase accuracy but also computational time of running.") 
-    parser.add_argument("--batch_size", type=int, default= 40, help= "Specify size of batch size. The batch size refers to the number of samples which are propagated through the network.")
+    parser.add_argument("--n_epochs", type=int, default= 15, help= "Specify number of epochs. More epochs increase accuracy but also computational time of running.") 
+    parser.add_argument("--batch_size", type=int, default= 15, help= "Specify size of batch size. The batch size refers to the number of samples which are propagated through the network.")
     parser.add_argument("--verbose", type=int, default= 1, help= "Specify whether the training progress for each epoch should be displayed.") 
     
     #add arguments for running the model
-    parser.add_argument("--prefix", type=str, default= "Why did the chicken cross the road", help= "Specify prefix for text generation.") 
-    parser.add_argument("--n_next_words", type=int, default= 20, help= "Specify number of next words following the prefix.")
+    parser.add_argument("--prefix", type=str, default= "Why did the ", help= "Specify prefix for text generation.") 
+    parser.add_argument("--n_next_words", type=int, default= 15, help= "Specify number of next words following the prefix.")
 
 
     # parse the arguments from the command line 

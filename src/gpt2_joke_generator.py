@@ -49,7 +49,7 @@ gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_prefix',
                       nsamples=15, # n text prompts generated
                       batch_size=25, 
                       prefix=input_prompt, # indicator of starting text for GPT-2
-                      #truncate="<|endoftext|>", # indicator of ending text for GPT-2
-                      #include_prefix=False, #remove prefix 
+                      truncate="<|endoftext|>", # indicator of ending text for GPT-2
+                      include_prefix=True, #remove prefix 
                       sample_delim=''
                       )

@@ -13,6 +13,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.layers import Embedding, LSTM, Dense, Dropout
+from tensorflow.keras import layers
 
 
 #standard coding practice
@@ -54,8 +55,12 @@ def create_model(max_sequence_len, total_words):
                         input_length=input_len))
     
     # Add Hidden Layer 1 - LSTM Layer
-    model.add(LSTM(100)) #long short term model
-    model.add(Dropout(0.1)) #during learning from the data and every iteration, remove 10% of the weights (90% of weights remains)  ### this is a finetuning parameter!!!!!!
+    model.add(layers.Bidirectional(layers.LSTM(64, return_sequences=True), input_shape=(5, 10)))
+    model.add(layers.Bidirectional(layers.LSTM(32, return_sequences=True), input_shape=(5, 10)))
+    model.add(layers.Bidirectional(layers.LSTM(16)))
+
+    #model.add(LSTM(100)) #long short term model #INITIAL 
+    model.add(Dropout(0.15)) #during learning from the data and every iteration, remove 10% of the weights (90% of weights remains)  ### this is a finetuning parameter!!!!!!
     
     # Add Output Layer
     model.add(Dense(total_words, #Dense layer =  output layer
