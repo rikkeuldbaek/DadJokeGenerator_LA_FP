@@ -49,11 +49,12 @@ def input_parse():
 
     #add arguments for training the model
     parser.add_argument("--n_epochs", type=int, default= 15, help= "Specify number of epochs. More epochs increase accuracy but also computational time of running.") 
-    parser.add_argument("--batch_size", type=int, default= 15, help= "Specify size of batch size. The batch size refers to the number of samples which are propagated through the network.")
+    parser.add_argument("--batch_size", type=int, default= 50, help= "Specify size of batch size. The batch size refers to the number of samples which are propagated through the network.")
     parser.add_argument("--verbose", type=int, default= 1, help= "Specify whether the training progress for each epoch should be displayed.") 
     
     #add arguments for running the model
-    parser.add_argument("--prefix", type=str, default= "why did the", help= "Specify prefix for text generation.") 
+    parser.add_argument("--prefix_why", type=str, default= "why did the", help= "Specify prefix for text generation.") 
+    parser.add_argument("--prefix_what", type=str, default= "What do you call", help= "Specify prefix for text generation.") 
     parser.add_argument("--n_next_words", type=int, default= 25, help= "Specify number of next words following the prefix.")
 
 
@@ -87,6 +88,9 @@ def model_func(max_sequence_len, total_words, predictors, label, n_epochs, batch
                         epochs= n_epochs, 
                         batch_size= batch_size, 
                         verbose=1) 
+    
+    #plot model
+    hf.plot_history(history, n_epochs)
 
     return history, model
 
@@ -117,11 +121,27 @@ def save_func(history, model, tokenizer, max_sequence_len):
     return()
 
 #################### RUN THE MODEL #######################
-def run_model(prefix, n_next_words, max_sequence_len, tokenizer):
+def run_model(prefix_why, prefix_what, n_next_words, max_sequence_len, tokenizer):
     #load model
     file_path = os.path.join(os.getcwd(),"models_RNN")
     loaded_model = tf.keras.models.load_model(file_path) 
-    print(hf.generate_text(prefix, n_next_words, loaded_model, max_sequence_len, tokenizer)) # Generated text 
+    generated_text_what = hf.generate_text(prefix_what, n_next_words, loaded_model, max_sequence_len, tokenizer) # Generated text 
+    generated_text_why = hf.generate_text(prefix_why, n_next_words, loaded_model, max_sequence_len, tokenizer) # Generated text 
+    
+    print(generated_text_what)
+    print(generated_text_why)
+
+    #save generated text (why joke)
+    f = open("out/dad_jokes_RNN_prefix_what.txt", "w")
+    f.write(str(generated_text_what))
+    f.close()
+
+    #save generated text (what joke)
+    f = open("out/dad_jokes_RNN_prefix_why.txt", "w")
+    f.write(str(generated_text_why))
+    f.close()
+
+    return()
 
 
 
@@ -130,14 +150,16 @@ def main():
     args = input_parse()
     
     #train the model
-    print("Initializing training of model..")
+    print("Training the RNN text generator on dad-jokes..")
     history, model = model_func(max_sequence_len, total_words, predictors, label, args.n_epochs, args.batch_size, args.verbose)
     print("Training done!")
     save_func(history, model, tokenizer, max_sequence_len)
     print("Saving model and metrics..")
 
     #run the model
-    run_model(args.prefix, args.n_next_words, max_sequence_len, tokenizer)
+    print("Running the model..")
+    run_model(args.prefix_why, args.prefix_what, args.n_next_words, max_sequence_len, tokenizer)
+
 
 if __name__ == '__main__':
     main()

@@ -32,23 +32,24 @@ gpt2.finetune(sess,
               model_name='124M', # smallest GPT-2 model
               steps=150, # number of steps to train (smaller steps is better for short text)
               restore_from='fresh', # training from base GPT-2
-              run_name='dadjokes_gpt2_prefix', # folder name for saving model and checkpoint
+              run_name='dadjokes_gpt2_prefix_what', # folder name for saving model and checkpoint
               print_every=50, # print every n steps in training process
               sample_every=10, #prints n examples for every printed step
               )
 
 
 ################### GENERATE NEW DAD JOKES USING GPT-2 - PREFIX ####################
-generated_file = 'out/dad_jokes_gpt2_prefix.txt'
-input_prompt = "why did the"
+generated_file = 'out/dad_jokes_gpt2_prefix_what.txt'
+input_prompt_why = "Why did the"
+input_prompt_what = "What do you call"
 
-gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_prefix',
+gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_prefix_what',
                       destination_path=generated_file , #filename of generated text
                       length=75, # max length of generated text
                       temperature= 1, #the larger value the more original txt is generated. (default = 0.7)
                       nsamples=15, # n text prompts generated
                       #batch_size=25, 
-                      prefix=input_prompt, # indicator of starting text for GPT-2
+                      prefix=input_prompt_what, # indicator of starting text for GPT-2
                       truncate="<|endoftext|>", # indicator of ending text for GPT-2
                       include_prefix=True, #remove prefix 
                       sample_delim=''

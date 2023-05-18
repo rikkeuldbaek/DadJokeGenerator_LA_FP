@@ -1,9 +1,10 @@
 # Import packages
-# Data preprocessing
+# Data preprocessing and plotting
 import string, os 
 import pandas as pd
 import numpy as np
 np.random.seed(42)
+import matplotlib.pyplot as plt
 
 # keras module for building LSTM 
 import tensorflow as tf
@@ -56,8 +57,8 @@ def create_model(max_sequence_len, total_words):
     
     # Add Hidden Layer 1 - LSTM Layer
     model.add(layers.Bidirectional(layers.LSTM(64, return_sequences=True), input_shape=(5, 10)))
-    model.add(layers.Bidirectional(layers.LSTM(32, return_sequences=True), input_shape=(5, 10)))
-    model.add(layers.Bidirectional(layers.LSTM(16)))
+    #model.add(layers.Bidirectional(layers.LSTM(32, return_sequences=True), input_shape=(5, 10)))
+    model.add(layers.Bidirectional(layers.LSTM(32)))
 
     #model.add(LSTM(100)) #long short term model #INITIAL 
     model.add(Dropout(0.15)) #during learning from the data and every iteration, remove 10% of the weights (90% of weights remains)  ### this is a finetuning parameter!!!!!!
@@ -87,6 +88,35 @@ def generate_text(seed_text, next_words, model, max_sequence_len, tokenizer):
                 break
         seed_text += " "+output_word
     return seed_text.title() 
+
+
+
+# training/validation history plot
+def plot_history(H, epochs):
+    plt.style.use("seaborn-colorblind")
+
+    plt.figure(figsize=(12,6))
+    plt.subplot(1,2,1)
+    #plt.plot(np.arange(0, epochs), H.history["loss"], label="train_loss")
+    #plt.plot(np.arange(0, epochs), H.history["val_loss"], label="val_loss", linestyle=":")
+    plt.title("Loss curve")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.tight_layout()
+    plt.legend()
+
+    plt.subplot(1,2,2)
+    #plt.plot(np.arange(0, epochs), H.history["accuracy"], label="train_acc")
+    #plt.plot(np.arange(0, epochs), H.history["val_accuracy"], label="val_acc", linestyle=":")
+    plt.title("Accuracy curve")
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy")
+    plt.tight_layout()
+    plt.legend()
+    plt.show()
+    plt.savefig('out/train_val_history_plot_RNN.png') #save figures in folder "out"
+
+
 
 
 

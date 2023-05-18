@@ -12,6 +12,8 @@ why not make my own model? There's simply too few data points in the dataset, fo
 RESOURCES:
 https://huggingface.co/gpt2 
 
+dad joke generator example using gpt2
 https://www.kaggle.com/code/aryashah2k/gpt-2-dad-joke-generator/notebook 
 
+data
 https://www.kaggle.com/datasets/aryashah2k/dad-a-base-of-jokes  
