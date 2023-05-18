@@ -40,14 +40,14 @@ gpt2.finetune(sess,
 
 ################### GENERATE NEW DAD JOKES USING GPT-2 - PREFIX ####################
 generated_file = 'out/dad_jokes_gpt2_prefix.txt'
-input_prompt = "Why did the chicken cross the road?"
+input_prompt = "why did the"
 
 gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_prefix',
                       destination_path=generated_file , #filename of generated text
                       length=75, # max length of generated text
                       temperature= 1, #the larger value the more original txt is generated. (default = 0.7)
                       nsamples=15, # n text prompts generated
-                      batch_size=25, 
+                      #batch_size=25, 
                       prefix=input_prompt, # indicator of starting text for GPT-2
                       truncate="<|endoftext|>", # indicator of ending text for GPT-2
                       include_prefix=True, #remove prefix 

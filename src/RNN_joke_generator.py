@@ -53,8 +53,8 @@ def input_parse():
     parser.add_argument("--verbose", type=int, default= 1, help= "Specify whether the training progress for each epoch should be displayed.") 
     
     #add arguments for running the model
-    parser.add_argument("--prefix", type=str, default= "Why did the ", help= "Specify prefix for text generation.") 
-    parser.add_argument("--n_next_words", type=int, default= 15, help= "Specify number of next words following the prefix.")
+    parser.add_argument("--prefix", type=str, default= "why did the", help= "Specify prefix for text generation.") 
+    parser.add_argument("--n_next_words", type=int, default= 25, help= "Specify number of next words following the prefix.")
 
 
     # parse the arguments from the command line 
