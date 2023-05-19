@@ -6,7 +6,7 @@
 #--------------------------------------------------------#
 ############### DAD JOKES GENERATOR - RNN ################
 #--------------------------------------------------------#
-
+ 
 #--------------------------------------------------------#
 ################## TRANING THE MODEL #####################
 #--------------------------------------------------------#
@@ -55,7 +55,7 @@ def input_parse():
     #add arguments for running the model
     parser.add_argument("--prefix_why", type=str, default= "why did the", help= "Specify prefix for text generation.") 
     parser.add_argument("--prefix_what", type=str, default= "What do you call", help= "Specify prefix for text generation.") 
-    parser.add_argument("--n_next_words", type=int, default= 25, help= "Specify number of next words following the prefix.")
+    parser.add_argument("--n_next_words", type=int, default= , help= "Specify number of next words following the prefix.")
 
 
     # parse the arguments from the command line 

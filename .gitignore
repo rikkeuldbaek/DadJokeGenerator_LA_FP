@@ -140,6 +140,7 @@ dmypy.json
 *checkpoint/
 
 
+
 # virtual environment
 LA_fp_env
 *LA_fp_env

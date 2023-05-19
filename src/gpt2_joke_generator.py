@@ -6,7 +6,7 @@
 #--------------------------------------------------------#
 ############## DAD JOKES GENERATOR - GPT-2 ###############
 #--------------------------------------------------------#
-
+ 
 # Install packages
 from transformers import pipeline
 import pandas as pd

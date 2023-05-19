@@ -58,13 +58,6 @@ def data_load(folder, file):
     data = pd.read_csv(file_path)
     return data
 
-# Inspect data
-def inspect_data(data):
-    # mean length of jokes 
-    mean_length =data['Joke'].str.len().mean()
-    print("Mean length of jokes in the data : ",round(mean_length, 0)) 
-    return()
-
 # Clean data
 def data_clean(data):
 
@@ -94,7 +87,6 @@ def main():
     args = input_parse()
     print("Initializing data preprocessing of dad jokes..")
     data = data_load(args.folder, args.file)
-    inspect_data(data)
     joke_corpus = data_clean(data)
     tokenizer, total_words = data_tokenize(joke_corpus)
     predictors, label, max_sequence_len, total_words, tokenizer = data_seq_and_pad(tokenizer, total_words, joke_corpus)
