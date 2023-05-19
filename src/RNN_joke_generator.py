@@ -7,15 +7,13 @@
 ############### DAD JOKES GENERATOR - RNN ################
 #--------------------------------------------------------#
  
-#--------------------------------------------------------#
-################## TRANING THE MODEL #####################
-#--------------------------------------------------------#
+# (please note that some of this code has been adapted from class sessions)
+
 
 # data processing tools 
 import string, os, sys
 import pandas as pd
 import numpy as np
-np.random.seed(42)
 
 # keras module for building LSTM 
 import tensorflow as tf
@@ -48,14 +46,14 @@ def input_parse():
     parser.add_argument("--file", type=str, default= "dad-a-base.csv", help= "Specify filename of .csv.") 
 
     #add arguments for training the model
-    parser.add_argument("--n_epochs", type=int, default= 15, help= "Specify number of epochs. More epochs increase accuracy but also computational time of running.") 
+    parser.add_argument("--n_epochs", type=int, default= 20, help= "Specify number of epochs. More epochs increase accuracy but also computational time of running.") 
     parser.add_argument("--batch_size", type=int, default= 50, help= "Specify size of batch size. The batch size refers to the number of samples which are propagated through the network.")
     parser.add_argument("--verbose", type=int, default= 1, help= "Specify whether the training progress for each epoch should be displayed.") 
     
     #add arguments for running the model
     parser.add_argument("--prefix_why", type=str, default= "why did the", help= "Specify prefix for text generation.") 
     parser.add_argument("--prefix_what", type=str, default= "What do you call", help= "Specify prefix for text generation.") 
-    parser.add_argument("--n_next_words", type=int, default= , help= "Specify number of next words following the prefix.")
+    parser.add_argument("--n_next_words", type=int, default= 12, help= "Specify number of next words following the prefix.")
 
 
     # parse the arguments from the command line 
@@ -70,7 +68,6 @@ import data as dt
 
 args = input_parse()
 data = dt.data_load(args.folder, args.file)
-dt.inspect_data(data)
 joke_corpus = dt.data_clean(data)
 tokenizer, total_words = dt.data_tokenize(joke_corpus)
 predictors, label, max_sequence_len, total_words, tokenizer = dt.data_seq_and_pad(tokenizer, total_words, joke_corpus)
