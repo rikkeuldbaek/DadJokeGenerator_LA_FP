@@ -52,7 +52,7 @@ def create_model(max_sequence_len, total_words):
     
     # Add Input Embedding Layer
     model.add(Embedding(total_words,  # creating embedding about each token, learned while training  
-                        5,  #small embedding, every word is represented by a 10 dimensional vector (hvilke ord ligger tættest på et givent ord i modellen)
+                        7,  #small embedding, every word is represented by a 10 dimensional vector (hvilke ord ligger tættest på et givent ord i modellen)
                         input_length=input_len))
     
     
