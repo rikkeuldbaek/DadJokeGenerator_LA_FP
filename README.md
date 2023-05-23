@@ -1,4 +1,4 @@
-# **Final Project - Dad Joke Generator using GPT-2 and RNNs**
+# **Final Project - Generating Dad Jokes using GPT-2 and RNNs**
 ## **Cultural Data Science - Language Analytics** 
 #### Author: Rikke Uldbæk (202007501)
 #### Date: 11th of May 2023
