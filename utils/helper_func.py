@@ -52,7 +52,7 @@ def create_model(max_sequence_len, total_words):
     
     # Add Input Embedding Layer
     model.add(Embedding(total_words,  # creating embedding about each token, learned while training  
-                        7,  #small embedding, every word is represented by a 10 dimensional vector (hvilke ord ligger tættest på et givent ord i modellen)
+                        12,  #small embedding, every word is represented by a 10 dimensional vector (hvilke ord ligger tættest på et givent ord i modellen)
                         input_length=input_len))
     
     
@@ -94,24 +94,6 @@ def generate_text(seed_text, next_words, model, max_sequence_len, tokenizer):
                 break
         seed_text += " "+output_word
     return seed_text.title() 
-
-
-
-# training/validation history plot
-def plot_history(H, epochs):
-    plt.style.use("seaborn-colorblind")
-
-    plt.figure(figsize=(12,6))
-    plt.subplot(1,2,1)
-    plt.plot(np.arange(0, epochs), H.history["loss"], label="train_loss")
-    plt.title("Loss curve")
-    plt.xlabel("Epoch")
-    plt.ylabel("Loss")
-    plt.tight_layout()
-    plt.legend()
-    plt.savefig('out/train_val_history_plot_RNN.png') #save figures in folder "out"
-
-
 
 
 
