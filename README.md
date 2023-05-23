@@ -192,11 +192,7 @@ The results of the RNN model are quite poor. The model can only generate one jok
 
 <br>
 
-The poor performance is not surprising, since the model has been trained on a very little text corpus of 743 relatively short sentences (dad jokes). There's simply too little data in the dataset, and this is definitely reflected in the quality of generated dad jokes. However, both dad jokes above have similar structures of pre-existing jokes which are found in the *dad jokes dataset*: "What do you call a cow on a trampoline? A milkshake." and "Why did the sentence fail the driving test? It never came to a full stop". Hence the RNN model almost replicates pre-existing jokes from the *dad jokes dataset*, making it a pretty poor model for generating new text.
-
-<br>
-
-Please navigate to the ```out``` folder to inspect the RNN generated dad jokes.
+The poor performance is not surprising, since the model has been trained on a very little text corpus of 743 relatively short sentences (dad jokes). There's simply too little data in the dataset, and this is definitely reflected in the quality of generated dad jokes. However, both dad jokes above have similar structures of pre-existing jokes which are found in the *dad jokes dataset*: "What do you call a cow on a trampoline? A milkshake." and "Why did the sentence fail the driving test? It never came to a full stop". Hence the RNN model almost replicates pre-existing jokes from the *dad jokes dataset*, making it a pretty poor model for generating new text. Please navigate to the ```out``` folder to inspect the RNN generated dad jokes.
 
 <br>
 
