@@ -79,7 +79,7 @@ bash run.sh
 
 
 ## **5.6.4 Script arguments**
-The GPT-2 and RNN model have the following default arguments stated in the table below. These arguments can be modified and adjusted in the ```run.sh``` script. If no modifications are added, default parameters are run. In case help is needed, please write ```--help``` in continuation of the code below instead of writing an argument.
+The GPT-2 and RNN model have the following default arguments stated in the tables below. These arguments can be modified and adjusted in the ```run.sh``` script. If no modifications are added, default parameters are run. In case help is needed, please write ```--help``` in continuation of the code below instead of writing an argument.
 
 ```python
 #GPT-2 model
