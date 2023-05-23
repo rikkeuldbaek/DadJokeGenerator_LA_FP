@@ -39,7 +39,7 @@ The scripts require a certain folder structure, thus the table below presents th
 
 |Folder name|Description|Content|
 |---|---|---|
-|```src```|dad joke generator scripts |```gpt2_joke_generator_what.py```,```gpt2_joke_generator_why.py```, ```RNN_joke_generator_what.py```, ```RNN_joke_generator_why.py```, ```data.py```|
+|```src```|dad joke generator scripts and data preprocessing script|```gpt2_joke_generator_what.py```,```gpt2_joke_generator_why.py```, ```RNN_joke_generator_what.py```, ```RNN_joke_generator_why.py```, ```data.py```|
 |```data```|.csv file of dad jokes|```dad-a-base.csv```|
 |```out```|saved .txt files of generated dad jokes|```dad_jokes_gpt2_what.txt```, ```dad_jokes_gpt2_why.txt```, ```dad_jokes_RNN_what.txt```, ```dad_jokes_RNN_why.txt```|
 
