@@ -20,9 +20,6 @@ import gpt_2_simple as gpt2
 # Scripting
 import argparse
 
-# fetch data
-import data as dt
-
 
 ###################### PARSER #########################
 def input_parse():
@@ -30,7 +27,7 @@ def input_parse():
     parser = argparse.ArgumentParser()
 
     #arguments for data preprocessing
-    parser.add_argument("--folder", type=str, default= "data", help= "Specify folder where .csv file is located.") 
+    parser.add_argument("--path_to_data", type=str, default= os.path.join(os.getcwd(), "data"), help= "Specify path to folder where .csv file is located.") 
     parser.add_argument("--file", type=str, default= "dad-a-base.csv", help= "Specify filename of .csv.") 
 
     #arguments for gpt2
@@ -47,11 +44,6 @@ def input_parse():
     return args #returning arguments
 
 
-################# IMPORT DATA ##############
-args = input_parse()
-data = dt.data_load(args.folder, args.file)
-
-
 ########################## DOWNLOAD MODEL ##########################
 def download_and_initialize_model():
     # download the smallest gpt-2 model with 124 million parameters
@@ -63,9 +55,12 @@ def download_and_initialize_model():
 
 
 ############## FINETUNE GPT-2 ON DAD JOKES ################
-def finetune_model(gpt2, sess, data, steps, restore_from):
+def finetune_model(gpt2, sess, path_to_data,file, steps, restore_from):
+
+    data_path = (path_to_data+"/"+file)
+
     gpt2.finetune(sess,
-                dataset=data,
+                dataset=data_path,
                 model_name='124M', # smallest GPT-2 model
                 steps=steps, # number of steps to train (smaller steps is better for short text)
                 restore_from=restore_from, # training from base GPT-2
@@ -81,7 +76,7 @@ def finetune_model(gpt2, sess, data, steps, restore_from):
 def joke_generator(gpt2, sess, prefix_what, gen_text_len, temperature):
 
     #predefined variables 
-    generated_file = 'out/dad_jokes_gpt2_what1.txt'
+    generated_file = 'out/dad_jokes_gpt2_what.txt'
 
     gpt2.generate_to_file(sess, run_name = 'dadjokes_gpt2_prefix_what',
                         destination_path=generated_file , #filename of generated text
@@ -101,7 +96,7 @@ def main():
     
     # gpt-2 model
     gpt2, sess = download_and_initialize_model()
-    gpt2, sess = finetune_model(gpt2, sess, data, args.steps, args.restore_from)
+    gpt2, sess = finetune_model(gpt2, sess, args.path_to_data, args.file, args.steps, args.restore_from)
     joke_generator(gpt2, sess, args.prefix_what, args.gen_text_len, args.temperature)
 
 

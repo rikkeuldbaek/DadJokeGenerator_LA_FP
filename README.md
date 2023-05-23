@@ -1,4 +1,3 @@
-
 # **Final Project - Dad Joke Generator using GPT-2 and RNNs**
 ## **Cultural Data Science - Language Analytics** 
 #### Author: Rikke Uldbæk (202007501)
@@ -14,7 +13,7 @@ https://github.com/rikkeuldbaek/DadJokeGenerator_LA_FP
 <br>
 
 # **5.2 Description**
-For this final project I will be generating dad jokes using two different methods of text generation, namely a simple RNN (recurrent neural network) and a pretrained gpt-2 model. Both models will be finetuned and trained on a *dad jokes dataset* in order to generate text of the like. In order to make the generated dad jokes from the two models comparable, I have chosen to generate two kinds of jokes from prefixes. These prefixes will indicate the start phrase of the joke, so that the jokes will have similar nature (similar one liner structure). The first kind of joke has the following prefix: "What do you call", while the second kind of joke has the following prefix: "Why did the". The quality of the generated dad jokes from both models will be evaluated in the results section. 
+For this final project I will be generating dad jokes using two different methods of text generation, namely a simple RNN (recurrent neural network) and a pretrained GPT-2 model. Both models will be finetuned and trained on a *dad jokes dataset* in order to generate text of the like. In order to make the generated dad jokes from the two models comparable, I have chosen to generate two kinds of jokes from prefixes. These prefixes will indicate the start phrase of the joke, so that the jokes will have similar nature (similar one liner structure). The first kind of joke has the following prefix: "What do you call", while the second kind of joke has the following prefix: "Why did the". The quality of the generated dad jokes from both models will be evaluated in the results section. 
 
 
 <br>
@@ -26,12 +25,12 @@ The *dad jokes dataset* is a web scraped collection of signature one liner dad j
 
 # **5.4 Methods**
 ### **GPT 2**
-For this project I have used the transformer model GPT-2 which is pretrained on a very large corpus of English text data. The language model comes in different sizes: GPT-Small, GPT-Medium, GPT-Large, and GPT-XL, and due to computational limiations the smallest GPT model is used (GPT-Small with 124 million parameters). The GPT-2 model is trained to find the next word in sentences, and is thus ideal for the purpose of this final project. The gpt-2 model is available via ```HuggingFace```, please see resources for further information.
+For this project I have used the transformer model GPT-2 which has been pretrained on a very large corpus of English text data. The language model comes in different sizes: GPT-Small, GPT-Medium, GPT-Large, and GPT-XL, and due to computational limiations the smallest GPT model is used (GPT-Small with 124 million parameters). The GPT-2 model is trained to find the next word in sentences, thus being ideal for the purpose of this final project. The GPT-2 model is available via ```HuggingFace```, please see resources for further information.
 
 <br>
 
 ### **RNN**
-RNNs are a type of sophisticated neural networks where the connection between the nodes are circular, thus being able to account for the sequential and temporal aspects of language. However, simple RNNs have a hard time dealing with long distance dependencies which are found in the nature of language, i.e., words from long ago have less impact than words from recent time (also known as the vanishing gradient problem). To overcome this problem, I have introduced a Gated Recurrent Unit layer (GRU) with 350 units in my RNN model. GRUs are an improved version of the simple RNN, as they are able avoid phasing out the information through time, thus storing relevant information from long time ago. The RNN of this project is constructed using tools from ```Keras - TensorFlow```. 
+Similarly I will be using a recurrent neural network (RNN) to generate dad jokes. RNNs are a type of sophisticated neural networks where the connection between the nodes are circular, thus being able to account for the sequential and temporal aspects of language. However, simple RNNs have a hard time dealing with long distance dependencies which are found in the nature of language, i.e., words from long ago have less impact than words from recent time (also known as the vanishing gradient problem). To overcome this problem, I have introduced a Gated Recurrent Unit layer (GRU) with 350 units in my RNN model. GRUs are an improved version of the simple RNNs, as they are able avoid phasing out the information through time, thus storing relevant information from long time ago. The RNN model of this project is constructed using tools from ```Keras - TensorFlow```, please see resources for further information. 
 
 <br>
 
@@ -40,12 +39,12 @@ The scripts require a certain folder structure, thus the table below presents th
 
 |Folder name|Description|Content|
 |---|---|---|
-|```src```|text generator scripts |```gpt2_joke_generator_what.py```,```gpt2_joke_generator_why.py```, ```RNN_joke_generator_what.py```, ```RNN_joke_generator_why.py```, ```data.py```|
+|```src```|dad joke generator scripts |```gpt2_joke_generator_what.py```,```gpt2_joke_generator_why.py```, ```RNN_joke_generator_what.py```, ```RNN_joke_generator_why.py```, ```data.py```|
 |```data```|.csv file of dad jokes|```dad-a-base.csv```|
 |```out```|saved .txt files of generated dad jokes|```dad_jokes_gpt2_what.txt```, ```dad_jokes_gpt2_why.txt```, ```dad_jokes_RNN_what.txt```, ```dad_jokes_RNN_why.txt```|
 
 
-The ```data.py```script located in ```src``` mainly preprocesses the data for the RNN. The ```gpt2_joke_generator_what.py```, ```gpt2_joke_generator_why.py```, ```RNN_joke_generator_what.py```, and ```RNN_joke_generator_why.py``` located in ```src``` generates dad jokes which are saved in the ```out``` folder.
+The ```data.py```script located in ```src``` only preprocesses the data for the RNN. The ```gpt2_joke_generator_what.py```, ```gpt2_joke_generator_why.py```, ```RNN_joke_generator_what.py```, and ```RNN_joke_generator_why.py``` located in ```src``` generates dad jokes which are saved in the ```out``` folder.
 
 <br>
 
@@ -70,9 +69,8 @@ bash setup.sh
 <br>
 
 ## **5.6.3 Run the script** 
-In order to run the GPT-2 model and RNN model, please run the following command in the terminal after setting up. 
-Please note that the scripts take quite some time to run, since each model must run twice to generate the two types of jokes. 
-
+In order to run the GPT-2 and RNN model, please run the following command in the terminal after setting up. 
+Please note that the scripts take quite some time to run since two types of jokes are generated from each model.
 ```python
 bash run.sh
 ```
@@ -110,6 +108,8 @@ The following arguments are available for the ```gpt2_joke_generator_what.py``` 
 
 |Argument|Type|Default|
 |---|---|---|
+|--path_to_data|string|os.path.join(os.getcwd(), "data")|
+|--file|string|"dad-a-base.csv"|
 |--steps|integer|300|
 |--restore_from|string|"fresh"|
 |--prefix_what|string|"What do you call"|
@@ -132,14 +132,10 @@ The following arguments are available for the ```RNN_joke_generator_what.py``` a
 |--n_next_words|integer|12|
 
 
-**Important to note** <br>
-The ```data.py``` is automatically called upon when running all the model scripts through the ```run.sh``` script, thus the arguments for ```data.py``` must be parsed to the model scripts inside the ```run.sh``` bash file:
+### **Important to note** <br>
+The ```data.py``` is automatically called upon when running the RNN model scripts through the ```run.sh``` script, thus the arguments for ```data.py``` must be parsed to the RNN model scripts inside the ```run.sh``` bash file:
 
 ````python 
-#GPT-2 model
-python src/gpt2_joke_generator_what.py --arguments_for_model --arguments_for_data
-python src/gpt2_joke_generator_why.py --arguments_for_model --arguments_for_data
-
 #RNN model
 python src/RNN_joke_generator_what.py --arguments_for_model --arguments_for_data
 python src/RNN_joke_generator_why.py --arguments_for_model --arguments_for_data
@@ -149,7 +145,7 @@ python src/RNN_joke_generator_why.py --arguments_for_model --arguments_for_data
 # **5.7 Results**
 
 ## **5.7.1 Results of the GPT-2 dad joke generator**
-The results of the GPT-2 model looks fairly fine. The model has been specified to generate 15 different jokes of each kind ("What do you call" and "Why did the"), thus multiple jokes were evaluated. The models seems to be picking up on the signature one liner dad joke style, with a text structure using a question and an answer. However, the majority of the generated jokes are lacking sematic quality or humor:
+The results of the GPT-2 model looks fairly fine. The model has been specified to generate 15 different jokes of each kind ("What do you call" and "Why did the"), thus multiple jokes were evaluated. The models seems to be picking up on the signature one liner dad joke style, with a sentence structure using a question and an answer. However, the majority of the generated jokes are lacking sematic quality or humor:
 
 <br>
 
@@ -163,7 +159,7 @@ The results of the GPT-2 model looks fairly fine. The model has been specified t
 
 <br>
 
-Although the majority of generated dad jokes are pretty poor, some of the jokes are actually funny. However, it turns out that these jokes are not always original. Using a simple google search to check whether of not the dad jokes are already present online or not, I found that most of the generated jokes are not original, i.e., already present somehwere on the internet. This is most likely due to the fact that GPT-2 is pretrained on web-data, and thus are likely to rely on it's pre-existing knowledge of original dad jokes. The ```temperature``` argument, specifying originality of generated text, could be tweaked, however this is a trade-off between originality and semantic quality of the sentence. For instance the GPT-2 model generated the following unoriginal joke: <br>
+Although the majority of GPT-2 generated dad jokes are pretty poor, some of the jokes are actually funny. However, it turns out that these jokes are not always original. Using a simple google search to check whether or not the dad jokes are already present online, I found that most of the generated jokes are not original, i.e., they are already present somehwere on the internet. This is most likely due to the fact that GPT-2 is pretrained on web-data, and thus are likely to rely on it's pre-existing knowledge of available dad jokes. The ```temperature``` argument, specifying originality of generated text, could be tweaked to overcome the problem, however this is a trade-off between originality and semantic quality of the sentence. For instance the GPT-2 model generated the following unoriginal jokes (pre-existing dad jokes found online): <br>
 
 <br>
 
@@ -181,12 +177,12 @@ Nonetheless, the finetuned GPT-2 model did actually create one new original "Wha
 
 <br>
 
-Please navigate to the ```out``` folder to see all GPT-2 generated dad jokes.
+Please navigate to the ```out``` folder to inspect all GPT-2 generated dad jokes.
 
 <br>
 
 ## **5.7.2 Results of the RNN dad joke generator**
-The results of the RNN model are quite poor. The model can only generate one joke of each kind ("What do you call" and "Why did the"), hence only two generated jokes are evaluated. From the generated jokes below, it is very obvious that the jokes lack grammatical and semantic quality. 
+The results of the RNN model are quite poor. The model can only generate one joke of each kind ("What do you call" and "Why did the"), hence only two generated jokes are evaluated. From the generated jokes below it is very obvious that the jokes lack grammatical and semantic quality. 
 
 <br>
 
@@ -196,13 +192,18 @@ The results of the RNN model are quite poor. The model can only generate one jok
 
 <br>
 
-The poor performance is not surprising, since the model only has been trained on a very little text corpus of 743 relatively short sentences (dad jokes). There's simply too little data in the dataset, and this is definitely reflected in the quality of generated dad jokes. 
+The poor performance is not surprising, since the model only has been trained on a very little text corpus of 743 relatively short sentences (dad jokes). There's simply too little data in the dataset, and this is definitely reflected in the quality of generated dad jokes. However, both dad jokes above have similar structures of pre-existing jokes which are found in the *dad jokes dataset*: "What do you call a cow on a trampoline? A milkshake." and "Why did the sentence fail the driving test? It never came to a full stop". Hence the RNN model almost replicates pre-existing jokes from the *dad jokes dataset*, making it pretty poor model for generating new text. 
 
 <br>
 
-Overall, the finetuned GPT-2 model outperforms the finetuned RNN when generating dad jokes. This makes pretty good sense as the GPT-2 model is pertrained on a very large english corpus, and thus have learned an inner representation of the english language beforehand. Contraily the simple RNN is only trained on this very little english corpus without any pre-existing knowledge of english language. After all, one could argue that it is not fair to compare the performance of a finetuned GPT-2 model and a finetuned RNN. 
+Please navigate to the ```out``` folder to inspect all RNN generated dad jokes.
 
 <br>
+
+Overall, the finetuned GPT-2 model outperforms the finetuned RNN when generating dad jokes. This makes pretty good sense as the GPT-2 model is pertrained on a very large english corpus, and thus have learned an inner representation of the English language beforehand. Contraily the simple RNN is only trained on this very little English corpus without any pre-existing knowledge of English language. After all, one could argue that it is not fair to compare the performance of a finetuned GPT-2 model and a finetuned RNN, as these models are indeed very different in their nature. 
+
+<br>
+
 
 # **Resources**
 [GPT-2 - Huggingface](https://huggingface.co/gpt2 )
