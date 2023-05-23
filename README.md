@@ -169,7 +169,7 @@ Although the majority of GPT-2 generated dad jokes are pretty poor, some of the 
 
 <br>
 
-Nonetheless, the finetuned GPT-2 model did actually create one new original "What do you call"-dad joke. Using a little google search, I was not able to find a similar joke, hence I consider the following joke a new original dad joke:
+Nonetheless, the finetuned GPT-2 model did actually create one new original "What do you call"-dad joke. When performing a little google search, I was not able to find a similar joke, hence I consider the following joke a new original dad joke:
 
 <br>
 
@@ -192,15 +192,15 @@ The results of the RNN model are quite poor. The model can only generate one jok
 
 <br>
 
-The poor performance is not surprising, since the model only has been trained on a very little text corpus of 743 relatively short sentences (dad jokes). There's simply too little data in the dataset, and this is definitely reflected in the quality of generated dad jokes. However, both dad jokes above have similar structures of pre-existing jokes which are found in the *dad jokes dataset*: "What do you call a cow on a trampoline? A milkshake." and "Why did the sentence fail the driving test? It never came to a full stop". Hence the RNN model almost replicates pre-existing jokes from the *dad jokes dataset*, making it pretty poor model for generating new text. 
+The poor performance is not surprising, since the model has been trained on a very little text corpus of 743 relatively short sentences (dad jokes). There's simply too little data in the dataset, and this is definitely reflected in the quality of generated dad jokes. However, both dad jokes above have similar structures of pre-existing jokes which are found in the *dad jokes dataset*: "What do you call a cow on a trampoline? A milkshake." and "Why did the sentence fail the driving test? It never came to a full stop". Hence the RNN model almost replicates pre-existing jokes from the *dad jokes dataset*, making it a pretty poor model for generating new text.
 
 <br>
 
-Please navigate to the ```out``` folder to inspect all RNN generated dad jokes.
+Please navigate to the ```out``` folder to inspect the RNN generated dad jokes.
 
 <br>
 
-Overall, the finetuned GPT-2 model outperforms the finetuned RNN when generating dad jokes. This makes pretty good sense as the GPT-2 model is pertrained on a very large english corpus, and thus have learned an inner representation of the English language beforehand. Contraily the simple RNN is only trained on this very little English corpus without any pre-existing knowledge of English language. After all, one could argue that it is not fair to compare the performance of a finetuned GPT-2 model and a finetuned RNN, as these models are indeed very different in their nature. 
+Overall, the finetuned GPT-2 model outperforms the finetuned RNN when generating dad jokes. This makes pretty good sense as the GPT-2 model is pertrained on a very large english corpus, and thus have learned an inner representation of the English language beforehand. Contraily the simple RNN is only trained on a very little English corpus (*dad jokes dataset*) without any pre-existing knowledge of English language. After all, one could argue that it is not fair to compare the performance of a finetuned GPT-2 model and a finetuned RNN, as these models are indeed very different in their nature. One should keep in mind that humor is subjective, and the generated dad jokes in this final project is evaluated by the author, hence this evaluation of results bears the mark of the author's subjectivity. 
 
 <br>
 
