@@ -35,7 +35,7 @@ Similarly I will be using a recurrent neural network (RNN) to generate dad jokes
 <br>
 
 # **5.5 Repository Structure**
-The scripts require a certain folder structure, thus the table below presents the required folders and their description and content.
+The scripts require a certain folder structure, thus the tables below presents the required folders and their description and content.
 
 |Folder name|Description|Content|
 |---|---|---|
